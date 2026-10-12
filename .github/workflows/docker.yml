@@ -84,6 +84,37 @@ jobs:
           docker logs ic
           docker rm -f ic
 
+      - name: List findings in the run summary and annotations
+        if: always()
+        uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1 # 0.35.0
+        with:
+          version: v0.69.3
+          image-ref: insurcraft:test
+          scanners: vuln,secret,misconfig
+          severity: MEDIUM,HIGH,CRITICAL
+          format: json
+          output: trivy.json
+          exit-code: "0"
+
+      - name: Summarize findings
+        if: always() && hashFiles('trivy.json') != ''
+        run: |
+          set -euo pipefail
+          jq -r '[.Results[]? | .Target as $t | (.Vulnerabilities // [])[] | "\(.Severity)|\(.PkgName) \(.InstalledVersion)|\(.VulnerabilityID)|fixed: \(.FixedVersion // "none")|\($t)"] | unique | .[]' trivy.json > findings.txt || true
+          {
+            echo "### Trivy findings (MEDIUM and above)"
+            echo
+            if [ -s findings.txt ]; then
+              echo "| Severity | Package | ID | Fix | Target |"
+              echo "| --- | --- | --- | --- | --- |"
+              sed 's/|/ | /g; s/^/| /; s/$/ |/' findings.txt
+            else
+              echo "None."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+          n=$(wc -l < findings.txt)
+          echo "::notice title=Trivy::${n} findings (MEDIUM+): $(head -c 3500 findings.txt | tr '\n' ';')"
+
       - name: Scan for vulnerabilities (fail on fixable HIGH/CRITICAL)
         uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1 # 0.35.0
         with:

@@ -34,6 +34,10 @@ LABEL org.opencontainers.image.title="InsurCraft 2.0" \
       org.opencontainers.image.vendor="Insur S.A."
 
 USER root
+# Patched OS packages: the base image is rebuilt upstream only from time to time, and the scan in
+# .github/workflows/docker.yml fails on any HIGH/CRITICAL that already has a fix.
+RUN apk upgrade --no-cache
+
 # Only our site: drop the image's sample config and page. Files are owned by root and read-only
 # to the server process, so a compromised worker cannot rewrite what visitors download.
 RUN rm -rf /etc/nginx/conf.d/* /usr/share/nginx/html/* \
