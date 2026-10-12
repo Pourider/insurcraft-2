@@ -57,7 +57,7 @@ jobs:
           cp -R dist/web/. site/completa/
           touch site/.nojekyll
           ls -la site site/completa
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: site
 
