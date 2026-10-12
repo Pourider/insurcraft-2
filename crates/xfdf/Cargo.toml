@@ -13,5 +13,5 @@ insurcraft-cos = { workspace = true }
 insurcraft-annot = { workspace = true }
 insurcraft-forms = { workspace = true }
 insurcraft-model = { workspace = true }
-roxmltree = "0.20"
+roxmltree = "0.21"
 thiserror = { workspace = true }
