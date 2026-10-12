@@ -34,7 +34,7 @@ jobs:
     env:
       TRUNK_VERSION: 0.21.14
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: dtolnay/rust-toolchain@stable
         with:
           targets: wasm32-unknown-unknown
