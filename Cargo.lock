@@ -2630,7 +2630,7 @@ dependencies = [
 name = "insurcraft-automation"
 version = "2.0.0"
 dependencies = [
- "base64 0.22.1",
+ "base64 0.23.1",
  "image",
  "insurcraft-cos",
  "insurcraft-engine",
@@ -2647,7 +2647,7 @@ dependencies = [
 name = "insurcraft-cli"
 version = "2.0.0"
 dependencies = [
- "base64 0.22.1",
+ "base64 0.23.1",
  "insurcraft-automation",
  "insurcraft-cos",
  "insurcraft-engine",
@@ -2916,7 +2916,7 @@ version = "2.0.0"
 dependencies = [
  "aes",
  "aws-lc-rs",
- "base64 0.22.1",
+ "base64 0.23.1",
  "bp256",
  "bp384",
  "cbc",
@@ -2949,7 +2949,7 @@ name = "insurcraft-ui-egui"
 version = "2.0.0"
 dependencies = [
  "arboard",
- "base64 0.22.1",
+ "base64 0.23.1",
  "bytemuck",
  "eframe",
  "egui",
@@ -2999,7 +2999,7 @@ dependencies = [
 name = "insurcraft-xfa"
 version = "2.0.0"
 dependencies = [
- "base64 0.22.1",
+ "base64 0.23.1",
  "image",
  "insurcraft-cos",
  "insurcraft-fonts",

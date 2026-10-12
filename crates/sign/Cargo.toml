@@ -15,7 +15,7 @@ insurcraft-cos = { workspace = true }
 insurcraft-annot = { workspace = true }
 insurcraft-fonts = { workspace = true }
 thiserror.workspace = true
-base64 = "0.22"
+base64 = "0.23"
 sha1 = "0.11"
 sha2 = "0.11"
 p256 = { version = "0.14", default-features = false, features = ["ecdsa", "std"] }
