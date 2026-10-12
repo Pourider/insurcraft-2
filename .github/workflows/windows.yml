@@ -54,7 +54,7 @@ jobs:
         id: version
         shell: bash
         run: echo "version=$(grep -m1 '^version' Cargo.toml | cut -d'"' -f2)" >> "$GITHUB_OUTPUT"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: insurcraft-windows-x64
           path: dist/release/*
