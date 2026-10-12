@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>InsurCraft Fácil — Unir PDFs</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=Figtree:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F5FA}
+a{color:#1D4ED8}a:hover{color:#1E3A8A}
+</style>
+</helmet>
+<div style="min-height: 860px; background: #F4F5FA; font-family: 'Figtree', system-ui, sans-serif; color: #0E1530; box-sizing: border-box">
+  <header style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px; padding: 20px 40px; background: #1D4ED8; color: #FFFFFF">
+    <a href="Main.dc.html" aria-label="Volver al inicio" style="display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 28px; background: #FFFFFF; color: #1D4ED8; text-decoration: none">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+    </a>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="11" rx="1.5"/><rect x="13" y="3" width="8" height="11" rx="1.5"/><path d="M7 17v1a3 3 0 0 0 3 3h4a3 3 0 0 0 3-3v-1"/><path d="M12 21v-4"/></svg>
+    <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 40px; letter-spacing: -0.5px">Unir PDFs</h1>
+  </header>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 32px 40px 48px; box-sizing: border-box">
+    <ol aria-label="Pasos" style="list-style: none; margin: 0 0 32px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+      <li style="display: flex; align-items: center; gap: 14px; padding: 16px 20px; border-radius: 20px; background: #FFFFFF; border: 3px solid #1D4ED8">
+        <span style="flex: none; width: 48px; height: 48px; border-radius: 24px; background: #1D4ED8; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px">1</span>
+        <span style="font-weight: 700; font-size: 22px">Agrega</span>
+      </li>
+      <li style="display: flex; align-items: center; gap: 14px; padding: 16px 20px; border-radius: 20px; background: #FFFFFF; border: 3px solid #1D4ED8">
+        <span style="flex: none; width: 48px; height: 48px; border-radius: 24px; background: #1D4ED8; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px">2</span>
+        <span style="font-weight: 700; font-size: 22px">Ordena</span>
+      </li>
+      <li style="display: flex; align-items: center; gap: 14px; padding: 16px 20px; border-radius: 20px; background: #E3E6F0; border: 3px solid #E3E6F0; color: #4A5270">
+        <span style="flex: none; width: 48px; height: 48px; border-radius: 24px; background: #FFFFFF; color: #4A5270; display: flex; align-items: center; justify-content: center; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px">3</span>
+        <span style="font-weight: 700; font-size: 22px">Guarda</span>
+      </li>
+    </ol>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; width: 220px">
+        <div style="position: relative; width: 200px; height: 260px; border-radius: 16px; background: #FFFFFF; border: 2px solid #C9CEDF; box-shadow: 0 6px 0 #D6DAE8; padding: 24px 22px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px">
+          <span style="position: absolute; top: -18px; left: -18px; width: 52px; height: 52px; border-radius: 26px; background: #1D4ED8; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 28px; border: 4px solid #F4F5FA">1</span>
+          <div style="height: 14px; width: 70%; border-radius: 4px; background: #0E1530"></div>
+          <div style="height: 8px; width: 100%; border-radius: 4px; background: #D6DAE8"></div>
+          <div style="height: 8px; width: 92%; border-radius: 4px; background: #D6DAE8"></div>
+          <div style="height: 8px; width: 96%; border-radius: 4px; background: #D6DAE8"></div>
+          <div style="height: 8px; width: 60%; border-radius: 4px; background: #D6DAE8"></div>
+        </div>
+        <span style="font-weight: 700; font-size: 18px">[archivo-1].pdf</span>
+        <span style="font-size: 16px; color: #4A5270">3 hojas</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; width: 220px">
+        <div style="position: relative; width: 200px; height: 260px; border-radius: 16px; background: #FFFFFF; border: 2px solid #C9CEDF; box-shadow: 0 6px 0 #D6DAE8; padding: 24px 22px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px">
+          <span style="position: absolute; top: -18px; left: -18px; width: 52px; height: 52px; border-radius: 26px; background: #1D4ED8; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 28px; border: 4px solid #F4F5FA">2</span>
+          <div style="height: 14px; width: 55%; border-radius: 4px; background: #0E1530"></div>
+          <div style="height: 60px; width: 100%; border-radius: 8px; background: #E3E6F0"></div>
+          <div style="height: 8px; width: 96%; border-radius: 4px; background: #D6DAE8"></div>
+          <div style="height: 8px; width: 80%; border-radius: 4px; background: #D6DAE8"></div>
+        </div>
+        <span style="font-weight: 700; font-size: 18px">[archivo-2].pdf</span>
+        <span style="font-size: 16px; color: #4A5270">5 hojas</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; width: 220px">
+        <div style="position: relative; width: 200px; height: 260px; border-radius: 16px; background: #FFFFFF; border: 2px solid #C9CEDF; box-shadow: 0 6px 0 #D6DAE8; padding: 24px 22px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px">
+          <span style="position: absolute; top: -18px; left: -18px; width: 52px; height: 52px; border-radius: 26px; background: #1D4ED8; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 28px; border: 4px solid #F4F5FA">3</span>
+          <div style="height: 14px; width: 80%; border-radius: 4px; background: #0E1530"></div>
+          <div style="height: 8px; width: 100%; border-radius: 4px; background: #D6DAE8"></div>
+          <div style="height: 8px; width: 88%; border-radius: 4px; background: #D6DAE8"></div>
+          <div style="height: 8px; width: 94%; border-radius: 4px; background: #D6DAE8"></div>
+        </div>
+        <span style="font-weight: 700; font-size: 18px">[archivo-3].pdf</span>
+        <span style="font-size: 16px; color: #4A5270">1 hoja</span>
+      </div>
+
+      <button style="width: 200px; height: 260px; border-radius: 16px; border: 4px dashed #1D4ED8; background: #EEF2FF; color: #1D4ED8; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; font: 800 26px 'Bricolage Grotesque', sans-serif; cursor: pointer">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+        Agregar
+      </button>
+    </div>
+
+    <div style="margin-top: 20px; display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 600; color: #4A5270">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9h14"/><path d="M5 15h14"/><path d="m9 5 3-3 3 3"/><path d="m15 19-3 3-3-3"/></svg>
+      Arrastra para cambiar el orden
+    </div>
+
+    <div style="margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 28px; border-radius: 28px; background: #FFFFFF; border: 2px solid #E3E6F0">
+      <div style="display: flex; align-items: center; gap: 16px">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
+        <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 32px">3 PDFs → 1 PDF · 9 hojas</span>
+      </div>
+      <a href="Listo.dc.html" style="display: flex; align-items: center; gap: 14px; height: 80px; padding: 0 44px; border-radius: 40px; background: #15803D; color: #FFFFFF; text-decoration: none; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 34px; letter-spacing: 0.5px; box-shadow: 0 6px 0 #0E5A2B">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        UNIR
+      </a>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":860}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

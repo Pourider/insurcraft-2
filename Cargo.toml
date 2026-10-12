@@ -5,7 +5,7 @@ exclude = ["vendor"]
 default-members = ["crates/*", "apps/insurcraft", "apps/insurcraft-cli", "xtask"]
 
 [workspace.package]
-version = "0.5.0"
+version = "2.0.0"
 edition = "2024"
 license = "MIT OR Apache-2.0"
 rust-version = "1.90"
@@ -13,36 +13,36 @@ repository = "https://github.com/Pourider/insurcraft"
 
 [workspace.dependencies]
 # internal
-insurcraft-geom = { path = "crates/geom", version = "0.5.0" }
-insurcraft-filters = { path = "crates/filters", version = "0.5.0" }
-insurcraft-cos = { path = "crates/cos", version = "0.5.0" }
-insurcraft-crypt = { path = "crates/crypt", version = "0.5.0" }
-insurcraft-organize = { path = "crates/organize", version = "0.5.0" }
-insurcraft-measure = { path = "crates/measure", version = "0.5.0" }
-insurcraft-annot = { path = "crates/annot", version = "0.5.0" }
-insurcraft-fonts = { path = "crates/fonts", version = "0.5.0" }
-insurcraft-model = { path = "crates/model", version = "0.5.0" }
-insurcraft-content = { path = "crates/content", version = "0.5.0" }
-insurcraft-redact = { path = "crates/redact", version = "0.5.0" }
-insurcraft-print = { path = "crates/print", version = "0.5.0" }
-insurcraft-xfdf = { path = "crates/xfdf", version = "0.5.0" }
-insurcraft-sign = { path = "crates/sign", version = "0.5.0" }
-insurcraft-optimize = { path = "crates/optimize", version = "0.5.0" }
-insurcraft-a11y = { path = "crates/a11y", version = "0.5.0" }
-insurcraft-ocr = { path = "crates/ocr", version = "0.5.0" }
-insurcraft-js = { path = "crates/js", version = "0.5.0" }
-insurcraft-compare = { path = "crates/compare", version = "0.5.0" }
-insurcraft-preflight = { path = "crates/preflight", version = "0.5.0" }
-insurcraft-export = { path = "crates/export", version = "0.5.0" }
-insurcraft-edit = { path = "crates/edit", version = "0.5.0" }
-insurcraft-create = { path = "crates/create", version = "0.5.0" }
-insurcraft-forms = { path = "crates/forms", version = "0.5.0" }
-insurcraft-xfa = { path = "crates/xfa", version = "0.5.0" }
-insurcraft-render = { path = "crates/render", version = "0.5.0" }
-insurcraft-engine = { path = "crates/engine", version = "0.5.0" }
-insurcraft-platform = { path = "crates/platform", version = "0.5.0" }
-insurcraft-ui-egui = { path = "crates/ui-egui", version = "0.5.0" }
-insurcraft-automation = { path = "crates/automation", version = "0.5.0", default-features = false }
+insurcraft-geom = { path = "crates/geom", version = "2.0.0" }
+insurcraft-filters = { path = "crates/filters", version = "2.0.0" }
+insurcraft-cos = { path = "crates/cos", version = "2.0.0" }
+insurcraft-crypt = { path = "crates/crypt", version = "2.0.0" }
+insurcraft-organize = { path = "crates/organize", version = "2.0.0" }
+insurcraft-measure = { path = "crates/measure", version = "2.0.0" }
+insurcraft-annot = { path = "crates/annot", version = "2.0.0" }
+insurcraft-fonts = { path = "crates/fonts", version = "2.0.0" }
+insurcraft-model = { path = "crates/model", version = "2.0.0" }
+insurcraft-content = { path = "crates/content", version = "2.0.0" }
+insurcraft-redact = { path = "crates/redact", version = "2.0.0" }
+insurcraft-print = { path = "crates/print", version = "2.0.0" }
+insurcraft-xfdf = { path = "crates/xfdf", version = "2.0.0" }
+insurcraft-sign = { path = "crates/sign", version = "2.0.0" }
+insurcraft-optimize = { path = "crates/optimize", version = "2.0.0" }
+insurcraft-a11y = { path = "crates/a11y", version = "2.0.0" }
+insurcraft-ocr = { path = "crates/ocr", version = "2.0.0" }
+insurcraft-js = { path = "crates/js", version = "2.0.0" }
+insurcraft-compare = { path = "crates/compare", version = "2.0.0" }
+insurcraft-preflight = { path = "crates/preflight", version = "2.0.0" }
+insurcraft-export = { path = "crates/export", version = "2.0.0" }
+insurcraft-edit = { path = "crates/edit", version = "2.0.0" }
+insurcraft-create = { path = "crates/create", version = "2.0.0" }
+insurcraft-forms = { path = "crates/forms", version = "2.0.0" }
+insurcraft-xfa = { path = "crates/xfa", version = "2.0.0" }
+insurcraft-render = { path = "crates/render", version = "2.0.0" }
+insurcraft-engine = { path = "crates/engine", version = "2.0.0" }
+insurcraft-platform = { path = "crates/platform", version = "2.0.0" }
+insurcraft-ui-egui = { path = "crates/ui-egui", version = "2.0.0" }
+insurcraft-automation = { path = "crates/automation", version = "2.0.0", default-features = false }
 
 # pdf
 hayro = "0.7.1"
