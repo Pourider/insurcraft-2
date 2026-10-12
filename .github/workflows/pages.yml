@@ -1,6 +1,6 @@
-# Publishes InsurCraft's website on GitHub Pages:
-#   https://<owner>.github.io/insurcraft/      landing page (docs/index.html)
-#   https://<owner>.github.io/insurcraft/app/  the full app running in the browser (WebAssembly)
+# Publishes InsurCraft 2.0 on GitHub Pages:
+#   https://<owner>.github.io/<repo>/           InsurCraft Fácil (web/, plain HTML, no build step)
+#   https://<owner>.github.io/<repo>/completa/  the full app running in the browser (WebAssembly)
 #
 # One-time setup in the repository: Settings → Pages → Build and deployment → Source: GitHub Actions.
 # Runs on every push to main that touches the app or the site, and on demand (Actions → Pages → Run workflow).
@@ -12,7 +12,7 @@ on:
     paths:
       - "apps/**"
       - "crates/**"
-      - "docs/index.html"
+      - "web/**"
       - "Cargo.toml"
       - "Cargo.lock"
       - ".github/workflows/pages.yml"
@@ -51,11 +51,12 @@ jobs:
         run: trunk build --release
       - name: Assemble the site
         run: |
-          mkdir -p site/app
-          cp docs/index.html site/index.html
-          cp -R dist/web/. site/app/
+          mkdir -p site/completa
+          cp -R web/. site/
+          rm -f site/README.md
+          cp -R dist/web/. site/completa/
           touch site/.nojekyll
-          ls -la site site/app
+          ls -la site site/completa
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
