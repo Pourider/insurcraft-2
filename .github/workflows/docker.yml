@@ -1,0 +1,146 @@
+# Builds the InsurCraft 2.0 container, checks that it serves the site safely, scans it for known
+# vulnerabilities and, on main, publishes it to ghcr.io/pourider/insurcraft-2.
+#
+# Third-party actions are pinned to full commit SHAs (tag in the comment). Trivy in particular:
+# aquasecurity/trivy-action tags up to 0.34.2 and trivy v0.69.4 were compromised in March 2026
+# (CVE-2026-33634); 0.35.0 and trivy v0.69.3 are the known-good releases used here.
+name: Docker
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "Dockerfile"
+      - ".dockerignore"
+      - "docker/**"
+      - "web/**"
+      - "apps/**"
+      - "crates/**"
+      - "Cargo.toml"
+      - "Cargo.lock"
+      - ".github/workflows/docker.yml"
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    # Re-scan the published image every Monday: new CVEs appear even when the code doesn't change.
+    - cron: "17 11 * * 1"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docker-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  IMAGE: ghcr.io/pourider/insurcraft-2
+
+jobs:
+  image:
+    name: Build, test, scan and publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      security-events: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+
+      - name: Build
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
+        with:
+          context: .
+          load: true
+          tags: insurcraft:test
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Smoke test (read-only, no capabilities, unprivileged)
+        run: |
+          set -euo pipefail
+          docker run -d --name ic -p 127.0.0.1:8080:8080 --read-only --tmpfs /tmp:size=16m \
+            --cap-drop ALL --security-opt no-new-privileges:true insurcraft:test
+          for _ in $(seq 1 30); do curl -fs http://127.0.0.1:8080/healthz && break; sleep 1; done
+          check() { code=$(curl -s -o /dev/null -w '%{http_code}' "http://127.0.0.1:8080$1"); echo "$1 -> $code"; test "$code" = "$2"; }
+          check / 200
+          check /app.js 200
+          check /vendor/pdf.min.mjs 200
+          check /completa/ 200
+          check /README.md 404
+          check /.git/config 404
+          test "$(curl -s -o /dev/null -w '%{http_code}' -X POST -d x http://127.0.0.1:8080/)" = 405
+          curl -sI http://127.0.0.1:8080/ | tee headers.txt
+          grep -qi "^content-security-policy: default-src 'none'" headers.txt
+          grep -qi "^x-content-type-options: nosniff" headers.txt
+          grep -qi "^x-frame-options: DENY" headers.txt
+          if grep -qi "^server: nginx/" headers.txt; then echo "nginx version is exposed"; exit 1; fi
+          curl -sI http://127.0.0.1:8080/vendor/pdf.min.mjs | grep -qi "^content-type: text/javascript"
+          test "$(docker exec ic id -u)" = "101"
+          if docker exec ic sh -c 'touch /usr/share/nginx/html/x 2>/dev/null'; then echo "site files are writable"; exit 1; fi
+          docker logs ic
+          docker rm -f ic
+
+      - name: Scan for vulnerabilities (fail on fixable HIGH/CRITICAL)
+        uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1 # 0.35.0
+        with:
+          version: v0.69.3
+          image-ref: insurcraft:test
+          scanners: vuln,secret,misconfig
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+          format: table
+
+      - name: Scan report for GitHub code scanning (all severities)
+        if: always() && github.event_name != 'pull_request'
+        uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1 # 0.35.0
+        with:
+          version: v0.69.3
+          skip-setup-trivy: true
+          image-ref: insurcraft:test
+          scanners: vuln,secret,misconfig
+          format: sarif
+          output: trivy.sarif
+          exit-code: "0"
+
+      - name: Upload scan to the Security tab
+        if: always() && github.event_name != 'pull_request' && hashFiles('trivy.sarif') != ''
+        uses: github/codeql-action/upload-sarif@9f759ee644a3e7c15c1390abf49868036c00067b # v3
+        with:
+          sarif_file: trivy.sarif
+          category: container
+
+      - name: Software bill of materials (SBOM)
+        uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0
+        with:
+          image: insurcraft:test
+          format: spdx-json
+          output-file: insurcraft-sbom.spdx.json
+          upload-artifact: false
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: insurcraft-sbom
+          path: insurcraft-sbom.spdx.json
+
+      - name: Log in to GitHub Container Registry
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        run: |
+          set -euo pipefail
+          for t in 2.0.0 latest "sha-${GITHUB_SHA::12}"; do
+            docker tag insurcraft:test "$IMAGE:$t"
+            docker push "$IMAGE:$t"
+          done
+          echo "Published $IMAGE:2.0.0 (digest: $(docker inspect --format '{{index .RepoDigests 0}}' "$IMAGE:2.0.0"))" >> "$GITHUB_STEP_SUMMARY"

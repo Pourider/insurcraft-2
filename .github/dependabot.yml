@@ -1,0 +1,17 @@
+# Weekly update PRs for everything InsurCraft depends on. Each PR runs the full CI and the
+# container scan before it can be merged.
+version: 2
+updates:
+  - package-ecosystem: cargo
+    directory: "/"
+    schedule: { interval: weekly, day: monday }
+    open-pull-requests-limit: 10
+    groups:
+      rust-minor-and-patch:
+        update-types: [minor, patch]
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule: { interval: weekly, day: monday }
+  - package-ecosystem: docker
+    directory: "/"
+    schedule: { interval: weekly, day: monday }

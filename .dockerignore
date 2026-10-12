@@ -1,0 +1,16 @@
+# Keep the build context small and free of local state; the image only needs sources.
+.git
+.github
+target
+dist
+corpus
+fuzz-out
+log
+plan
+craft-fonts
+assets/models
+**/node_modules
+.env
+*.pem
+*.pfx
+*.key

@@ -1,0 +1,23 @@
+# docker compose up -d   →   http://127.0.0.1:8080
+# Uses the image GitHub builds and scans (ghcr.io/pourider/insurcraft-2). To build locally instead,
+# replace `image:` with `build: .`.
+services:
+  insurcraft:
+    image: ghcr.io/pourider/insurcraft-2:2.0.0
+    container_name: insurcraft
+    restart: unless-stopped
+    ports:
+      # Bound to this machine only; publish it through the company's reverse proxy (with TLS).
+      - "127.0.0.1:8080:8080"
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 100
+    mem_limit: 128m
+    cpus: 0.5
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
