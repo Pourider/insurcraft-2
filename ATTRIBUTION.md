@@ -4,7 +4,7 @@
 
 Every asset InsurCraft includes, bundles or uses to build its published material, with its author, source and licence. The policy is in [AGENTS.md](AGENTS.md) §1. The machine-readable list, with SHA-256 hashes, is [ATTRIBUTION.toml](ATTRIBUTION.toml). Licence texts are kept beside the assets and summarised in [NOTICE](NOTICE).
 
-## In this repository (239)
+## In this repository (245)
 
 | Asset | Title | Author | Licence | Source | Used for |
 |---|---|---|---|---|---|
@@ -247,6 +247,12 @@ Every asset InsurCraft includes, bundles or uses to build its published material
 | `packaging/macos/dmg/background.svg` | InsurCraft macOS DMG window background | @XusBadia | MIT OR Apache-2.0 | Original work for this repository, derived from the InsurCraft app icon (assets/app-icon/insurcraft.svg, referenced via an SVG image element, not copied) | Finder window of the macOS DMG; rendered to background.tiff by packaging/macos/dmg/generate.py |
 | `packaging/macos/dmg/background.tiff` | InsurCraft macOS DMG window background (rendered) | @XusBadia | MIT OR Apache-2.0 | Rendered from packaging/macos/dmg/background.svg by packaging/macos/dmg/generate.py | 1x + 2x HiDPI 16-colour palette TIFF copied into the macOS DMG by packaging/macos/package.sh; includes the app icon and the free LittleCMS built-in sRGB profile |
 | `crates/sign/tests/data/x509-rsa-sha1.pdf` | One-page PDF with a legacy adbe.x509.rsa_sha1 signature by the RSA test key | PdfCraft contributors | MIT OR Apache-2.0 | Contributor-original: hand-written PDF objects; signature made with `openssl dgst -sha1 -sign` over its byte ranges (see crates/sign/tests/data/README.md) | Signature validation tests (crates/sign/tests/pdf.rs): the legacy adbe.x509.rsa_sha1 format |
+| `web/fonts/bricolage.woff2` | Bricolage Grotesque (variable weight, Latin subset) | The Bricolage Grotesque Project Authors (Mathieu Triay) | OFL-1.1 | https://github.com/ateliertriay/bricolage (npm @fontsource-variable/bricolage-grotesque, latin-wght-normal.woff2) | Display font for InsurCraft Fácil (web/) |
+| `web/fonts/figtree-500.woff2` | Figtree Medium (Latin subset) | The Figtree Project Authors (Erik Kennedy) | OFL-1.1 | https://github.com/erikdkennedy/figtree (npm @fontsource/figtree, latin-500-normal.woff2) | Body font for InsurCraft Fácil (web/) |
+| `web/fonts/figtree-700.woff2` | Figtree Bold (Latin subset) | The Figtree Project Authors (Erik Kennedy) | OFL-1.1 | https://github.com/erikdkennedy/figtree (npm @fontsource/figtree, latin-700-normal.woff2) | Body font for InsurCraft Fácil (web/) |
+| `web/fonts/figtree-800.woff2` | Figtree ExtraBold (Latin subset) | The Figtree Project Authors (Erik Kennedy) | OFL-1.1 | https://github.com/erikdkennedy/figtree (npm @fontsource/figtree, latin-800-normal.woff2) | Body font for InsurCraft Fácil (web/) |
+| `web/fonts/caveat.woff2` | Caveat SemiBold (Latin subset) | The Caveat Project Authors (Impallari Type) | OFL-1.1 | https://github.com/googlefonts/caveat (npm @fontsource/caveat, latin-600-normal.woff2) | Handwriting font for typed signatures in InsurCraft Fácil (web/) |
+| `web/icon.svg` | InsurCraft Fácil favicon | InsurCraft contributors | MIT OR Apache-2.0 | Contributor-original | Browser tab icon for InsurCraft Fácil (web/) |
 
 ## Compiled in through dependencies (6)
 
