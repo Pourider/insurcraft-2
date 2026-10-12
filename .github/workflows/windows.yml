@@ -60,7 +60,7 @@ jobs:
           path: dist/release/*
           if-no-files-found: error
       - name: Publish as the latest release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: v${{ steps.version.outputs.version }}
           name: InsurCraft v${{ steps.version.outputs.version }}
